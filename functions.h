@@ -14,7 +14,6 @@ const int CHUNKED_MODE = -1;
 const int UNKNOWN_LENGTH = -2;
 
 int hex_str_to_int(std::string hex);
-std::string get_request_from_url(const std::string& hostname, const std::string& address);
 int get_content_length(const std::string& line);
 void output(std::string content);
 

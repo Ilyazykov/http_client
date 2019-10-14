@@ -70,8 +70,7 @@ int HttpClient::try_send_http(SocketWrapper& socket, const std::string& hostname
         }
     }
     else if (line == "HTTP/" + HTTP_VERSION + " 404 Not Found") {
-        std::cout << "ERROR: 404: Not Found";
-        exit(1);
+        throw std::runtime_error("ERROR: 404: Not Found");
     }
 
     return content_length;

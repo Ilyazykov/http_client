@@ -14,14 +14,12 @@ void SocketWrapper::start(const std::string& hostname) {
     hostent* raw_host;
     raw_host = gethostbyname(hostname.c_str());
     if (raw_host == nullptr) {
-        std::cout << "ERROR: no such host";
-        exit(0);
+        throw std::runtime_error("ERROR: no such host");
     }
 
     sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
-        perror("socket");
-        exit(1);
+        throw std::runtime_error("ERROR: socket doesn't work");
     }
 
     sockaddr_in addr{};
@@ -29,8 +27,7 @@ void SocketWrapper::start(const std::string& hostname) {
     addr.sin_port = htons(PORT);
     bcopy((char*)raw_host->h_addr, (char*)&addr.sin_addr, raw_host->h_length);
     if (connect(sock, (sockaddr*)&addr, sizeof(addr)) < 0) {
-        std::cerr << "connect error" << std::endl;
-        exit(2);
+        throw std::runtime_error("ERROR: connect error");
     }
 }
 

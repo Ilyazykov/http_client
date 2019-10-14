@@ -14,8 +14,7 @@ int hex_str_to_int(std::string hex)
             result = result * 16 + (letter + 10 - 'A');
         }
         else {
-            std::cout << "ERROR: wrong HEX number";
-            exit(1);
+            throw std::runtime_error("ERROR: wrong HEX number");
         }
     }
 

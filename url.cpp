@@ -19,6 +19,7 @@ Url::Url(const std::string& url) {
         host_end = url.size();
     }
 
+    // TODO: add https and others maybe
     if ((host_begin > 0) && (url.substr(0, host_begin) != "http://")) {
         throw std::runtime_error("ERROR: bad request. Url should be 'http://'");
     }
@@ -32,10 +33,10 @@ Url::Url(const std::string& url) {
     }
 }
 
-std::string Url::get_hostname() {
+std::string Url::get_hostname() const {
     return hostname;
 }
 
-std::string Url::get_address() {
+std::string Url::get_address() const {
     return address;
 }

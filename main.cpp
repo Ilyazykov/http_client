@@ -6,7 +6,6 @@
 #include "url.h"
 #include "HttpClient.h"
 
-
 int main(int argc, char *argv[]) {
     if (argc < 2) {
         throw std::runtime_error("ERROR: incorrect command line parameters."
@@ -16,14 +15,11 @@ int main(int argc, char *argv[]) {
     std::cout << "recognizing " << argv[1] << "..." << std::endl;
     Url url(argv[1]);
 
-    std::string hostname = url.get_hostname();
-    std::string address = url.get_address();
-
-    std::cout << "connecting " << hostname << " ...";
-    SocketWrapper socket(hostname);
+    std::cout << "connecting " << url.get_hostname() << " ...";
+    SocketWrapper socket(url.get_hostname());
     std::cout << "connection established" << std::endl;
 
-    int content_length = HttpClient::try_send_http(socket, hostname, address);
+    int content_length = HttpClient::try_send_http(socket, url);
 
     std::string content_length_str = "no data";
     if (content_length >= 0) {

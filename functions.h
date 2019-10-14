@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "main.h"
+
 #ifndef HTTP_CLIENT_FUNCTIONS_H
 #define HTTP_CLIENT_FUNCTIONS_H
 

@@ -70,7 +70,13 @@ std::string SocketWrapper::recv_msg_by_length(int length) const {
         char *buf = new char[length + 1];
         recv(sock, buf, length, 0);
 
-        return std::string(buf);
+        while (length > 0) { // TODO
+            char *buf = new char[length];
+            int get_size = recv(sock, buf, length, 0);
+
+            length -= get_size;
+            result += buf;
+        }
     }
     else if (length == CHUNKED_MODE) {
         std::string chunk_size_str = recv_msg_line();

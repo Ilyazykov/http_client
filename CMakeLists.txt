@@ -3,4 +3,4 @@ project(http_client)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(http_client main.cpp)
+add_executable(http_client main.cpp functions.h functions.cpp)

@@ -21,10 +21,14 @@ int hex_str_to_int(std::string hex)
     return result;
 }
 
-void output(std::string content) {
+void output(std::string content, std::string output_file) {
+    std::cout << "saving to " << output_file << std::endl;
+
     std::ofstream out;
-    out.open(OUTPUT_FILE);
+    out.open(output_file);
     if (out.is_open()) {
         out << content;
     }
+
+    std::cout << output_file << " saved";
 }

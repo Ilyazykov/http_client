@@ -9,6 +9,8 @@ SocketWrapper::~SocketWrapper() {
 }
 
 void SocketWrapper::start(const std::string& hostname) {
+    std::cout << "connecting " << hostname << " ...";
+
     this->hostname = hostname;
 
     hostent* raw_host;
@@ -29,6 +31,8 @@ void SocketWrapper::start(const std::string& hostname) {
     if (connect(sock, (sockaddr*)&addr, sizeof(addr)) < 0) {
         throw std::runtime_error("ERROR: connect error");
     }
+
+    std::cout << "connection established" << std::endl;
 }
 
 void SocketWrapper::restart() {
@@ -66,33 +70,13 @@ std::string SocketWrapper::recv_msg_line() const {
 
 std::string SocketWrapper::recv_msg_by_length(int length) const {
     std::string result = "";
-    if (length >= 0) {
-        char *buf = new char[length + 1];
-        recv(sock, buf, length, 0);
 
-        while (length > 0) { // TODO
-            char *buf = new char[length];
-            int get_size = recv(sock, buf, length, 0);
+    while (length > 0) {
+        char *buf = new char[length];
+        int get_size = recv(sock, buf, length, 0);
 
-            length -= get_size;
-            result += buf;
-        }
-    }
-    else if (length == CHUNKED_MODE) {
-        std::string chunk_size_str = recv_msg_line();
-
-        while (chunk_size_str != "0") {
-            int chunk_size = hex_str_to_int(chunk_size_str);
-            while (chunk_size > 0) {
-                char *buf = new char[chunk_size];
-                int get_size = recv(sock, buf, chunk_size, 0);
-
-                chunk_size -= get_size;
-                result += buf;
-            }
-            recv_msg_line();
-            chunk_size_str = recv_msg_line();
-        }
+        length -= get_size;
+        result += buf;
     }
 
     return result;

@@ -1,11 +1,11 @@
+#ifndef HTTP_CLIENT_FUNCTIONS_H
+#define HTTP_CLIENT_FUNCTIONS_H
+
 #include <string>
 #include <iostream>
 #include <fstream>
 
 #include "main.h"
-
-#ifndef HTTP_CLIENT_FUNCTIONS_H
-#define HTTP_CLIENT_FUNCTIONS_H
 
 const std::string HTTP_VERSION = "1.1";
 const std::string DEFAULT_OUTPUT_FILE = "index.html";

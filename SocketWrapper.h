@@ -1,3 +1,6 @@
+#ifndef HTTP_CLIENT_SOCKETWRAPPER_H
+#define HTTP_CLIENT_SOCKETWRAPPER_H
+
 #include <string>
 #include <iostream>
 
@@ -8,9 +11,6 @@
 #include <zconf.h>
 
 #include "functions.h"
-
-#ifndef HTTP_CLIENT_SOCKETWRAPPER_H
-#define HTTP_CLIENT_SOCKETWRAPPER_H
 
 const int PORT = 80;
 

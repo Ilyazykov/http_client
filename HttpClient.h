@@ -1,12 +1,12 @@
+#ifndef HTTP_CLIENT_HTTPCLIENT_H
+#define HTTP_CLIENT_HTTPCLIENT_H
+
 #include <iostream>
 
 #include "SocketWrapper.h"
 #include "url.h"
 
 #include "main.h"
-
-#ifndef HTTP_CLIENT_HTTPCLIENT_H
-#define HTTP_CLIENT_HTTPCLIENT_H
 
 class HttpClient {
     Url url;
